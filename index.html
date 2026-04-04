@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDİT V1 - Prime</title>
+    <title>Bozkurt Aİ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -291,14 +291,14 @@
 <div id="main-wrap">
     <nav class="top-nav">
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-        <div class="logo">EDIT V1</div>
+        <div class="logo">Bozkurt Aİ1</div>
         <button class="btn-ghost" onclick="clearAllData()" style="background:none; border:none; color:#475569; cursor:pointer; font-size:18px;">🗑️</button>
     </nav>
 
     <div id="chat-container"></div>
 
     <div class="bottom-wrap">
-        <div id="typing" style="display:none; color:var(--accent); font-size:12px; margin-bottom:10px;">Edit analiz ediyor...</div>
+        <div id="typing" style="display:none; color:var(--accent); font-size:12px; margin-bottom:10px;">Bozkurt analiz ediyor...</div>
         <div class="input-box">
             <button class="action-btn" onclick="listen()">🎤</button>
             <input type="text" id="cli" placeholder="Sistem hazır, mesajını bekliyorum..." autofocus onkeypress="checkKey(event)">
@@ -319,7 +319,7 @@
 </div>
 
 <script>
-    let sessions = JSON.parse(localStorage.getItem('edit_sessions')) || [];
+    let sessions = JSON.parse(localStorage.getItem('bozkurt_sessions')) || [];
     let currentSessionId = localStorage.getItem('current_session_id') || null;
     
     let synth = window.speechSynthesis;
@@ -391,7 +391,7 @@
                 headers: {"Authorization": "Bearer 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", "Content-Type": "application/json"},
                 body: JSON.stringify({
                     model: "llama-3.1-8b-instant",
-                    messages: [{role:"system", content: "Sen EDİT V1 adında modern bir yapay zekasın. Görevin kullanıcıya en doğru, net ve profesyonel bilgiyi sunmaktır. Karakterin yardımsever, zeki ve tarafsızdır. Gereksiz lakayıtlıktan veya aşırı sertlikten kaçın. Sorulara mantıklı ve yapılandırılmış cevaplar ver. Önemli yerleri **kalın** yap. Kendini kullanıcıyla karıştırma, bir asistan olduğunu bil."}, ...session.messages],
+                    messages: [{role:"system", content: "Sen Bozkurt Ai adında modern bir yapay zekasın. Görevin kullanıcıya en doğru, net ve profesyonel bilgiyi sunmaktır. Karakterin yardımsever, zeki ve tarafsızdır. Gereksiz lakayıtlıktan veya aşırı sertlikten kaçın. Sorulara mantıklı ve yapılandırılmış cevaplar ver. Önemli yerleri **kalın** yap. Kendini kullanıcıyla karıştırma, bir asistan olduğunu bil."}, ...session.messages],
                     temperature: 0.6
                 })
             });
@@ -400,7 +400,7 @@
             
             document.getElementById("typing").style.display = "none";
             session.messages.push({role: "assistant", content: text});
-            localStorage.setItem('edit_sessions', JSON.stringify(sessions));
+            localStorage.setItem('bozkurt_sessions', JSON.stringify(sessions));
             
             addMsg(text, "ai");
             
