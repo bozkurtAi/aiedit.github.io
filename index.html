@@ -453,6 +453,44 @@
         if(currentSessionId) loadSession(currentSessionId);
         loadVoices();
     };
+
+    // MİKROFON DİNLEME FONKSİYONU
+    function listen() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert("Tarayıcın ses tanımayı desteklemiyor kanka. Chrome veya Edge dene.");
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'tr-TR';
+        const micBtn = document.querySelector('.action-btn[onclick="listen()"]');
+        
+        recognition.onstart = () => {
+            micBtn.style.color = "#ef4444"; // Dinlerken mikrofon kırmızı olsun
+            document.getElementById("cli").placeholder = "Dinliyorum...";
+        };
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById("cli").value = transcript;
+            micBtn.style.color = "#94a3b8";
+            document.getElementById("cli").placeholder = "Sistem hazır...";
+            send(); // Söylediğini otomatik gönderir
+        };
+
+        recognition.onerror = () => {
+            micBtn.style.color = "#94a3b8";
+            document.getElementById("cli").placeholder = "Hata oluştu...";
+        };
+
+        recognition.onend = () => {
+            micBtn.style.color = "#94a3b8";
+        };
+
+        recognition.start();
+    }
+    
 </script>
 
 <div id="settings-modal" onclick="if(event.target===this) toggleSettings(false)">
